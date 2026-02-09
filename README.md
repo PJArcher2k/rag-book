@@ -1,4 +1,4 @@
-# Production RAG: Companion Repository
+# Beyond the Demo: Building RAG Systems That Actually Work -- Companion Repository
 
 This repository contains the complete source code referenced in *Beyond the Demo: Building RAG Systems That Actually Work*.
 
