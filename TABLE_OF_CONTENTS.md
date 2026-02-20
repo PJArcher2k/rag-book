@@ -1,0 +1,527 @@
+# Table of Contents
+
+---
+
+## Chapter 0: Beyond the Demo: Building RAG Systems That Actually Work
+- Abstract
+- Table of Contents
+- List of Figures
+- List of Tables
+- Executive Summary
+  - The Shift: AI Writes the Code. You Build the System.
+  - What This Book Covers
+  - Key Insights
+  - Who Should Read This
+  - How to Use This Book
+  - The Bottom Line
+
+---
+
+## Chapter 1: Introduction to RAG Systems
+- The Shift: AI Writes the Code. You Build the System.
+- 1.1 Historical Context and Evolution of RAG
+  - The Pre-Neural Era (1960s–2012)
+  - The Neural Revolution (2013–2018)
+  - The RAG Era Begins (2020–2023)
+  - Modern Production RAG (2024–Present)
+  - Recent Advances (2025)
+  - Why RAG Won
+- 1.2 Formal Definitions and Mathematical Foundations
+  - The Retrieval Problem
+  - The Generation Problem
+  - The End-to-End Objective
+  - Approximate Nearest Neighbor Search
+  - Information Theory Perspectives
+- 1.3 The Enterprise RAG Imperative
+  - The Knowledge Management Problem
+  - The Trust Problem
+  - The Cost Problem
+  - The Customization Problem
+  - Real-World Adoption Patterns
+- 1.4 Book Scope and Methodology
+  - Why We Wrote This Book
+  - Specific Gaps This Fills
+  - What's In Scope
+  - What's Out of Scope
+  - Research Methodology
+  - Structure and Navigation
+- 1.5 Related Work and Existing Surveys
+  - Academic Surveys
+  - Practitioner Resources
+  - How This Book Differs
+  - Chapter Summary
+
+---
+
+## Chapter 2: Data Curation and Document Preprocessing
+- 2.1 Enterprise Document Ecosystems
+  - The Document Zoo
+  - Document Metadata and Provenance
+  - Access Patterns and User Expectations
+- 2.2 Data Quality Frameworks for RAG
+  - The Quality Dimensions
+  - Quality Scoring
+  - Garbage Detection
+  - The "Garbage In, Gospel Out" Problem
+- 2.3 Document Deduplication Strategies
+  - Exact Duplicates
+  - Near-Duplicate Detection with MinHash
+  - SimHash for Hamming Distance
+  - Semantic Duplicates
+  - Deduplication Strategy at Scale
+- 2.4 Preprocessing Pipelines and Normalization
+  - The Pipeline Architecture
+  - Content Extraction
+  - Cleaning Operations
+  - Normalization
+  - Enrichment
+- 2.5 Data Freshness and Staleness Detection
+  - Freshness Signals
+  - Staleness Detection Strategies
+  - Handling Stale Content
+  - Freshness in Retrieval
+- 2.6 Multi-language and Internationalization
+  - Language Detection and Routing
+  - Multilingual Embeddings
+  - Translation Strategies
+  - Character Encoding and Script Handling
+  - Cultural and Regional Considerations
+  - Chapter Summary
+
+---
+
+## Chapter 3: Chunking Strategies and Semantic Segmentation
+- 3.1 The Chunking Problem: Trade-offs and Theory
+  - The Fundamental Tension
+  - Information Density: Not All Text Is Equal
+  - When Chunking Goes Wrong: A Cautionary Tale
+  - The Context Window Sweet Spot
+- 3.2 Fixed and Variable Chunking Approaches
+  - Fixed-Size Chunking: Simple, Fast, and Usually Wrong
+  - Respecting Boundaries: The Minimum Viable Improvement
+  - Structure-Aware Chunking: Respect the Author's Intent
+- 3.3 Late Chunking: Embedding-First Segmentation
+  - How Late Chunking Actually Works
+  - Why Late Chunking Works (And When It Doesn't)
+  - A Pragmatic Hybrid
+- 3.4 Semantic and Agentic Chunking
+  - Semantic Chunking: Powerful But Dangerous
+  - Agentic Chunking: Expensive Excellence
+- 3.5 Proposition-Based Chunking
+  - The RAPTOR Approach
+- 3.6 Chunk Metadata Enhancement
+  - Context-Enriched Chunks
+- 3.7 Chunk Overlap Optimization
+  - Types of Overlap
+  - Tokenizer Considerations
+  - Guidelines by Document Type
+  - Parent-Child Chunking
+- 3.8 Multi-modal Chunking
+  - Handling Tables
+  - Images and Diagrams
+  - When Multi-modal Chunking Matters
+  - Evaluating Chunking Quality
+  - Chapter Summary
+
+---
+
+## Chapter 4: Embedding Models and Semantic Representations
+- 4.1 Foundations of Dense Retrieval
+  - From Sparse to Dense
+  - Training Objectives
+  - Pooling Strategies
+  - Why Dimensionality Matters
+- 4.2 Contemporary Embedding Models: Deep Dive
+  - E5: The Reliable Workhorse
+  - BGE: Benchmark-Optimized
+  - GTE: Underrated Quality
+  - Nomic Embed: Reproducible Open Science
+  - 2025 Model Releases: The New State of the Art
+  - Newer Models to Watch
+  - Multi-lingual Models
+  - Domain-Specific Models
+- 4.3 Sparse Learned Retrieval (SPLADE)
+  - How SPLADE Works
+  - SPLADE vs Dense Embeddings
+  - Hybrid Approaches
+- 4.4 Embedding Model Fine-tuning Strategies
+  - When to Fine-tune
+  - Contrastive Fine-tuning
+  - Hard Negative Mining
+  - Domain Adaptation
+  - Multi-task Fine-tuning
+- 4.5 Dimensionality Reduction and Quantization
+  - PCA and Linear Reduction
+  - Product Quantization
+  - Binary Embeddings
+  - Trade-offs Summary
+- 4.6 Cross-Encoder Re-ranking
+  - Why Re-ranking Helps
+  - Popular Re-rankers
+  - Re-ranking Architecture
+  - Training Custom Re-rankers
+  - Re-ranking Overhead
+- 4.7 Late-Interaction Models (ColBERT, ColPali)
+  - How ColBERT Works
+  - ColBERT vs Standard Bi-Encoders
+  - Implementation Considerations
+  - ColPali: Vision-Language Late Interaction
+  - When to Use Late-Interaction Models
+  - Chapter Summary
+
+---
+
+## Chapter 5: Vector Databases and Storage Architectures
+- 5.1 Vector Indexing Algorithms and Theory
+  - The Curse of Dimensionality
+  - HNSW: Hierarchical Navigable Small World
+  - IVF: Inverted File Index
+  - Flat (Brute Force)
+  - Index Comparison
+  - Index Construction Trade-offs
+- 5.2 Commercial and Open-Source Vector Databases
+  - Pinecone: Managed Simplicity
+  - Weaviate: Semantic Native
+  - Milvus/Zilliz: Scale-First
+  - Chroma: Developer Experience
+  - pgvector: Postgres Extension
+  - Qdrant: Performance-Focused
+  - Comparison Matrix
+  - Selection Framework
+- 5.3 Hybrid Storage Architectures
+  - Metadata + Vector: The Dual-Store Pattern
+  - Document Store + Vector Index
+  - Graph + Vector Hybrid
+  - Multi-Modal Storage
+  - Hot/Warm/Cold Tiering
+- 5.4 Capacity Planning and Sizing
+  - Memory Requirements
+  - Disk I/O Considerations
+  - Network Bandwidth
+  - Query Latency Budgets
+  - Backup and Recovery
+  - Sizing Worksheet
+- 5.5 Multi-tenancy and Isolation Strategies
+  - Physical Isolation
+  - Logical Isolation
+  - Row-Level Security
+  - Performance Isolation
+  - Trade-offs Summary
+  - Chapter Summary
+
+---
+
+## Chapter 6: Retrieval Strategies and Advanced Architectures
+- 6.1 Retrieval Pipeline Fundamentals
+  - The Basic Pipeline
+  - Query Preprocessing
+  - Initial Retrieval Strategies
+- 6.2 Query Rewriting and Expansion
+  - HyDE: Hypothetical Document Embeddings
+  - Query Expansion
+  - Step-Back Prompting
+  - Query Decomposition
+  - When to Rewrite
+- 6.3 Hybrid Retrieval: Combining Dense and Sparse
+  - Why Hybrid Outperforms Pure Vector Search
+  - Fusion Strategies
+  - Weight Tuning
+  - Common Patterns
+  - Failure Modes
+- 6.4 Re-ranking and Result Fusion
+  - Cross-Encoder Re-ranking
+  - LLM-Based Re-ranking
+  - Diversity-Aware Re-ranking
+  - Result Fusion
+  - Cascading Retrieval
+- 6.5 Multi-hop and Iterative Retrieval
+  - Iterative Refinement
+  - Follow-up Queries
+  - Confidence-Based Stopping
+  - Jumping vs. Walking
+- 6.6 Contextual Compression and Filtering
+  - Relevance Filtering
+  - Redundancy Removal
+  - Content Extraction
+  - Priority Ordering
+  - Chapter Summary
+
+---
+
+## Chapter 7: Generation Optimization and Multi-LLM Architectures
+- 7.1 LLM Selection for RAG Applications
+  - The Capability Spectrum
+  - Model Selection Framework
+  - Cost Analysis: A Real Example
+- 7.2 Prompt Engineering for RAG
+  - System Prompts
+  - Context Presentation
+  - Instruction Templates
+  - Few-Shot Examples
+  - Chain-of-Thought
+- 7.3 Structured Output and Format Control
+  - JSON Mode
+  - Pydantic Integration
+  - Validation and Retry
+  - Streaming Structured Output
+- 7.4 Multi-LLM Routing Strategies
+  - Capability-Based Routing
+  - Confidence-Based Routing
+  - Cost-Based Routing
+  - Latency-Based Routing
+  - Hybrid Routing
+- 7.5 Citation and Attribution
+  - Why Citations Matter
+  - Citation Formats
+  - Verification
+  - When Models Hallucinate Citations
+- 7.6 Handling Edge Cases and Failures
+  - Empty Retrieval
+  - Low Confidence
+  - Contradictory Sources
+  - Out-of-Scope Queries
+  - Toxic or Inappropriate Content
+  - Chapter Summary
+
+---
+
+## Chapter 8: Conversational RAG and Multi-Turn Systems
+- 8.1 Conversational Context Management
+  - The Naive Approach (That Doesn't Work)
+  - Selective Context Management
+  - Query Rewriting with History
+  - Session State Design
+  - Memory Architectures
+- 8.2 Multi-Turn Retrieval Patterns
+  - Clarification Loops
+  - Follow-up Query Understanding
+  - Reference Resolution
+  - Intent Shift Detection
+- 8.3 Conversation State Machines
+  - States and Transitions
+  - Implementation Example
+  - Error Recovery
+- 8.4 Streaming and Latency Optimization
+  - Progressive Display
+  - Optimistic Rendering
+  - Chunked Streaming
+  - Latency Budgeting
+- 8.5 Conversation Evaluation
+  - Turn-Level Metrics
+  - Session-Level Metrics
+  - Human Evaluation
+  - A/B Testing
+  - Chapter Summary
+
+---
+
+## Chapter 9: Evaluation Frameworks and Quality Assurance
+- 9.1 RAG Evaluation Dimensions
+  - The Three Dimensions
+  - Why Separate Dimensions Matter
+- 9.2 Retrieval Evaluation
+  - Precision@K and Recall@K
+  - MRR and NDCG
+  - Query-Based Evaluation
+  - Human Evaluation
+  - Error Analysis
+- 9.3 Generation Evaluation
+  - Reference-Based Metrics
+  - LLM-as-Judge
+  - Human Evaluation
+  - Factuality Checking
+  - Style and Tone
+- 9.4 End-to-End Evaluation
+  - Answer Relevance
+  - Faithfulness
+  - Context Utilization
+  - Answer Completeness
+  - Latency and Cost
+- 9.5 Benchmarks and Test Sets
+  - Public Benchmarks
+  - Building Custom Test Sets
+  - Synthetic Data Generation
+  - Test Set Maintenance
+- 9.6 Continuous Evaluation and Monitoring
+  - Production Metrics
+  - Drift Detection
+  - A/B Testing
+  - Feedback Loops
+  - Alerting
+  - Chapter Summary
+
+---
+
+## Chapter 10: Hybrid RAG Architectures and Advanced Techniques
+- 10.1 RAG and Fine-Tuning Integration (RAFT)
+  - The Problem with Pure RAG
+  - RAFT Training Approach
+  - RAFT vs. Standard Fine-tuning
+  - When to Use RAFT
+  - Implementation Considerations
+- 10.2 On-Premise and Air-Gapped Deployment
+  - The On-Premise Challenge
+  - Architecture Patterns
+  - Model Selection
+  - Hardware Considerations
+  - Operational Complexity
+- 10.3 Late-Interaction Vision Models (ColPali)
+  - The Document Understanding Problem
+  - How ColPali Works
+  - Performance Characteristics
+  - Implementation Example
+  - When to Use ColPali
+- 10.4 RAG with Small Language Models (MiniRAG)
+  - The SLM Opportunity
+  - Model Comparison
+  - MiniRAG Architecture
+  - When MiniRAG Makes Sense
+- 10.5 Multi-Agent RAG Systems
+  - Why Multi-Agent?
+  - Architecture Patterns
+  - Implementation Example
+  - Coordination Strategies
+  - Failure Handling
+  - Chapter Summary
+
+---
+
+## Chapter 11: Security, RBAC, and Enterprise Integration
+- 11.1 Role-Based Access Control for RAG
+  - Document-Level Access Control
+  - Attribute-Based Access Control (ABAC)
+  - Multi-Tenant Index Isolation
+- 11.2 Data Privacy and PII Protection
+  - The PII Detection Challenge
+  - Differential Privacy: When You Need Analytics, Not Identities
+- 11.3 Adversarial Defense and Robustness
+  - Knowledge Poisoning and Source Verification
+  - Membership Inference Attacks
+  - Prompt Injection Defense
+  - Retrieval Poisoning Detection
+- 11.4 Context Leakage Across Users
+  - The Cache Contamination Problem
+  - Tenant-Aware Cache Isolation
+  - Query Embedding Cache Isolation
+  - Audit and Detection
+- 11.5 Enterprise System Integration
+  - SSO and Identity Provider Integration
+  - Audit Logging
+  - Zero-Trust Principles for RAG
+  - Secret Management
+  - Privacy-Preserving RAG Techniques (2025 Advances)
+- 11.6 Output Safety and Moderation
+  - Content Moderation Pipeline
+  - Response Watermarking
+  - Chapter Summary
+  - Security Checklist
+
+---
+
+## Chapter 12: Scaling, Cost Optimization, and Operations
+- 12.1 Cost Modeling for RAG Systems
+  - Cost Components Breakdown
+  - Building a Cost Model
+  - Hidden Cost: Document Reprocessing
+  - GPU Cost Optimization
+  - Cost Optimization Strategies
+- 12.2 Horizontal and Vertical Scaling
+  - Scaling Patterns
+  - Auto-Scaling Configuration
+  - Load Balancing Strategies
+- 12.3 Caching and Optimization
+  - Multi-Layer Caching Strategy
+  - Semantic Cache Implementation
+  - Cost Attribution
+- 12.4 Observability and Distributed Tracing
+  - Instrumenting the RAG Pipeline
+  - Key Metrics Dashboard
+  - Alerting Rules
+- 12.5 Embedding Model Versioning and Migration
+  - Versioning Strategy
+  - Dual-Write During Migration
+- 12.6 DevOps and MLOps for RAG
+  - CI/CD Pipeline for RAG
+  - Feature Flags for RAG Experiments
+  - Chapter Summary
+
+---
+
+## Chapter 13: Future Roadmap (2026–2030)
+- The Long-Context Question
+- Regulatory Landscape for AI (2024–2030)
+- 13.1 Agentic RAG and Autonomous Systems
+  - From Retrieval to Reasoning
+  - Tool-Using Agents
+  - Multi-Agent RAG Collaboration
+  - Autonomous Research Agents
+- 13.2 Multi-modal RAG Evolution
+  - Vision-RAG
+  - Video RAG
+  - Audio-RAG
+  - Unified Multi-modal Embeddings
+- 13.3 Hardware and Efficiency Trends
+  - The Shift to Edge AI
+  - Neural Processing Units (NPUs)
+  - Federated RAG
+  - Model Compression Advances
+- 13.4 Standardization and Interoperability
+  - Emerging Standards
+  - Interoperable Components
+  - The Future: RAG as a Commodity
+  - What NOT to Bet On
+  - Chapter Summary
+
+---
+
+## Chapter 14: Conclusion and Recommendations
+- 14.1 Key Findings and Insights
+  - 1. Retrieval Quality is the Foundation
+  - 2. Evaluation is Non-Negotiable
+  - 3. Simple Beats Complex (Until It Doesn't)
+  - 4. Security Cannot Be Bolted On
+  - 5. Cost Surprises Come from Unexpected Places
+  - 6. Multi-Modal is Coming Fast
+  - 7. The Half-Life of Best Practices is Short
+  - When NOT to Use RAG
+  - Common Failure Modes (and How to Detect Them)
+  - Team Structure for RAG Projects
+  - Where to Start Based on Your Role
+- 14.2 Strategic Implementation Roadmap
+  - Phase 1: Foundation (Weeks 1–4)
+  - Phase 2: Quality Improvement (Weeks 5–12)
+  - Phase 3: Scale and Optimize (Weeks 13–24)
+  - Phase 4: Advanced Features (Months 7–12)
+  - The "Don't" List
+  - Measuring Success
+  - The Long Game
+  - Final Thoughts
+  - Further Resources
+
+---
+
+## Chapter 15: References
+- Industry Resources and Technical Documentation
+- Standards and Regulatory Documents
+
+---
+
+## Chapter 16: Appendices
+- Appendix A: Critical Code Snippets
+  - A.1 Late Chunking Implementation
+  - A.2 RBAC-Enforced Retrieval Middleware
+  - A.3 Hallucination Loop Detection Pattern
+  - A.4 Context Leakage Prevention in Caching
+  - A.5 Autonomous Research Agent (Full Implementation)
+- Appendix B: Architecture Diagrams
+  - B.1 Complete RAG Pipeline Flowchart
+  - B.2 Multi-Tenant Vector Database with RBAC
+  - B.3 Conversational RAG State Management
+  - B.4 On-Premise Deployment Architecture
+  - B.5 Secure Caching Architecture
+- Appendix C: Evaluation Metrics Reference
+  - Retrieval Metrics
+  - Generation Metrics
+  - End-to-End Metrics
+  - Statistical Significance
+- Appendix D: Glossary
