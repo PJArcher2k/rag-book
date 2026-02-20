@@ -132,5 +132,4 @@ The book ource code file is a password protected zip file. The password is the f
 ---
 
 **Book:** Beyond the Demo: Building RAG Systems That Actually Work  
-**Total Word Count:** ~72,000 words across 14 chapters  
 **Last Updated:** February 2025
